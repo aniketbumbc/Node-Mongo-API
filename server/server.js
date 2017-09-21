@@ -1,5 +1,6 @@
-var bodyParser=require('body-parser'); // take JSON convernt into object 
-var express=require('express');
+const _= require('lodash');
+const bodyParser=require('body-parser'); // take JSON convernt into object 
+const express=require('express');
 const port=process.env.PORT || 3000;
 
 const{ObjectID}=require('mongodb'); //
@@ -75,6 +76,37 @@ if(!todo)
 res.status(400).send();
 })
 });
+
+//update resources 
+
+app.patch('/todos/:id',(req,res)=>{
+var id=req.params.id;
+var body =_.pick(req.body,['name','Done']);
+
+if(!ObjectID.isValid(id)){
+       return res.status(404).send();
+ }
+
+ if(_.isBoolean(body.Done) && body.Done){
+
+body.DoneAt= new Date().getTime();
+ }
+ else
+ {
+    body.Done=false;
+    body.DoneAt=null;
+ }
+Todo.findByIdAndUpdate(id,{$set:body},{new:true}).then((todo)=>{
+if(!todo){
+
+    return res.status(404).send();
+}
+res.send({todo});
+}).catch((e)=>{
+ res.status(404).send();
+})
+});
+
 
 
 
