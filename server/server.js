@@ -1,5 +1,6 @@
 var bodyParser=require('body-parser'); // take JSON convernt into object 
 var express=require('express');
+const port=process.env.PORT || 3000;
 
 const{ObjectID}=require('mongodb'); //
 
@@ -8,7 +9,7 @@ var{Todo}=require('./modles/todo');
 var{User}=require('./modles/user');
 
 var app=express();
-const port=process.env.PORT || 3000;
+//const port=process.env.PORT || 3000;
 
 
 app.use(bodyParser.json());
@@ -59,7 +60,6 @@ res.status(400).send();
 });
 
 app.listen(port,()=>{
-
     console.log(`Hello console Serverup ${port}` );
 });
 
