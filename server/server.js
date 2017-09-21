@@ -9,6 +9,8 @@ var{User}=require('./modles/user');
 
 var app=express();
 
+var Port=process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 
 app.post('/todos',(req,res)=>{
@@ -58,8 +60,8 @@ res.status(400).send();
 
 
 
-app.listen(3000,()=>{
-console.log('Start on Port 3000');
+app.listen(port,()=>{
+console.log(`Start up at port ${port}`);
 });
 
 
