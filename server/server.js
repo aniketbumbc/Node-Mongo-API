@@ -7,7 +7,7 @@ const{ObjectID}=require('mongodb'); //
 
 var{mongoose}= require('./db/mongoose');
 var{Todo}=require('./modles/todo');
-var{User}=require('./modles/user');
+var {User}=require('./modles/user');
 
 var app=express();
 //const port=process.env.PORT || 3000;
@@ -15,9 +15,9 @@ var app=express();
 
 app.use(bodyParser.json());
 
-app.post('/todos',(req,res)=>{
-//console.log(req.body);
+//Post todos 
 
+app.post('/todos',(req,res)=>{
 var todo=new Todo({
 
     text:req.body.text
@@ -110,11 +110,26 @@ res.send({todo});
 
 
 
+app.post('/users',(req,res)=>{
+    var body=_.pick(req.body,['email','password']);
+    //
+    // var todo=new Todo({
+        
+    //         text:req.body.text
+    //     });
+    var user=new User(body) // Error Here  ??
 
+    user.save().then(()=>{
 
-
-
-
+        return user.generateAuthToken();
+        //res.send(userd);
+    }).then ((token)=>{
+        res.header('x-auth',token).send(user);
+    }).catch((e)=>{
+        res.status(404).send(e);
+    })
+    });
+    
 app.listen(port,()=>{
     console.log(`Hello console Serverup ${port}` );
 });
