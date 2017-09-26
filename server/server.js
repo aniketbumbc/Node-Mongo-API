@@ -3,12 +3,13 @@ const bodyParser=require('body-parser'); // take JSON convernt into object
 const express=require('express');
 const port=process.env.PORT || 3000;
 
+
 const{ObjectID}=require('mongodb'); //
 
 var{mongoose}= require('./db/mongoose');
 var{Todo}=require('./modles/todo');
 var {User}=require('./modles/user');
-
+var {authenticate}=require('./middleware/auth');
 var app=express();
 //const port=process.env.PORT || 3000;
 
@@ -124,6 +125,33 @@ app.post('/users',(req,res)=>{
         res.status(404).send(e);
     });
     });
+
+//private route
+
+
+
+// var authenticate=(req,res,next)=>{
+//     var token =req.header('x-auth');
+//     User.findByToken(token).then((user)=>{
+ 
+//  if(!user)
+//  {
+//  return Promise.reject();
+//  }
+// req.user=user;
+// req.token=token;
+
+//   }).catch((e)=>{
+//      res.status(401).send();
+//    });
+
+// };
+
+app.get('/users/me',authenticate,(req,res)=>{
+    res.send(req.user);
+});
+
+
     
 app.listen(port,()=>{
     console.log(`Hello console Serverup ${port}` );
