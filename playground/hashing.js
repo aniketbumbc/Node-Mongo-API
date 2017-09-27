@@ -1,20 +1,45 @@
 const{SHA256}=require('crypto-js');
 const jwt=require('jsonwebtoken');
 
-
-var data=
-{
-    id:10
-};
+const bcrypt=require('bcryptjs');
 
 
-var token =jwt.sign(data,'abc123');
-console.log(token);
+var password='abc234!';
+
+// bcrypt.genSalt(10,(err,salt)=>{
+
+// bcrypt.hash(password,salt,(err,hash)=>{
+
+// console.log(hash);
+
+// });
+// }) ;                              // no one can do bruteforce
+
+
+var haspass='$2a$10$KblcCJibiBqs68.5PyAU5.lV2dR0NswB6jkx/RVTtZ0R5AqsnKd8K';
+
+bcrypt.compare(password,haspass,(err,res)=>{
+
+console.log(res);
+
+})
 
 
 
-var decoded=jwt.verify(token,'abc123');
-console.log('decode:---',decoded);
+
+// var data=
+// {
+//     id:10
+// };
+
+
+// var token =jwt.sign(data,'abc123');
+// console.log(token);
+
+
+
+// var decoded=jwt.verify(token,'abc123');
+// console.log('decode:---',decoded);
 
 
 
