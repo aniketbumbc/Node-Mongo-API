@@ -62,25 +62,25 @@ return _.pick(userObject,['_id','email']);
         };
 
 
-        // UserSchema.methods.removeToken=function(token){
-        //     var user=this;
-        //   return user.update ({
-        //     $pull:{
-        //         tokens:{token}
-        //     }
-        //    });
-        //  };
+        UserSchema.methods.removeToken=function(token){
+            var user=this;
+          return user.update ({
+            $pull:{
+                tokens:{token}
+            }
+           });
+         };
         
 
-        UserSchema.methods.removeToken = function (token) {
-            var user = this;
+        // UserSchema.methods.removeToken = function (token) {
+        //     var user = this;
           
-            return user.update({
-              $pull: {
-                tokens: {token}
-              }
-            });
-          };
+        //     return user.update({
+        //       $pull: {
+        //         tokens: {token}
+        //       }
+        //     });
+        //   };
           
 
 
