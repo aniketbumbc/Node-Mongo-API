@@ -62,6 +62,27 @@ return _.pick(userObject,['_id','email']);
         };
 
 
+        // UserSchema.methods.removeToken=function(token){
+        //     var user=this;
+        //   return user.update ({
+        //     $pull:{
+        //         tokens:{token}
+        //     }
+        //    });
+        //  };
+        
+
+        UserSchema.methods.removeToken = function (token) {
+            var user = this;
+          
+            return user.update({
+              $pull: {
+                tokens: {token}
+              }
+            });
+          };
+          
+
 
 //model method findByToken
 
@@ -134,6 +155,8 @@ if(user.isModified('password')){
     next();
 }
  });
+
+
 
 
 
