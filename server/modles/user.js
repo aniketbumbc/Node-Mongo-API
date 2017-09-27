@@ -72,18 +72,7 @@ return _.pick(userObject,['_id','email']);
          };
         
 
-        // UserSchema.methods.removeToken = function (token) {
-        //     var user = this;
-          
-        //     return user.update({
-        //       $pull: {
-        //         tokens: {token}
-        //       }
-        //     });
-        //   };
-          
-
-
+       
 //model method findByToken
 
  UserSchema.statics.findByToken=function(token){
