@@ -1,3 +1,5 @@
+require('./config/config');
+
 const _= require('lodash');
 const bodyParser=require('body-parser'); // take JSON convernt into object 
 const express=require('express');
