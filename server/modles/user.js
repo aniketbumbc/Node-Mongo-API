@@ -112,23 +112,10 @@ return new Promise((resolve,reject)=>{
         });
     });
     });
-
 };
 
-
-
-
-
-
-
-
-
-
-
  UserSchema.pre('save',function(next){
-
 var user=this;
-
 if(user.isModified('password')){
     //var password=user.password;
     bcrypt.genSalt(10,(err,salt)=>{
@@ -144,11 +131,6 @@ if(user.isModified('password')){
     next();
 }
  });
-
-
-
-
-
 
 var User=mongoose.model('User',UserSchema);
 module.exports={User}
