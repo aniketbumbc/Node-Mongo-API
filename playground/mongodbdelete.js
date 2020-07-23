@@ -12,7 +12,7 @@ console.log('connect to database');
 // console.log(result);
 // });
 
-//deleteOne
+//deleteSingle
 
 // db.collection('Todos').deleteOne({name:'Abhishek'}).then((result)=>{
 // console.log(result);
