@@ -7,7 +7,7 @@ return console.log('Unable to connect to mongodb');
 console.log('connect to database');
 //deletemany,deleteOne, findand deleteOne
 
-//deletemany
+//dwlwt
 // db.collection('Todos').deleteMany({name:'Abhishek'}).then((result)=>{
 // console.log(result);
 // });
